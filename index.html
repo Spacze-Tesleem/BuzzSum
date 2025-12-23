@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Hero Section</title>
+
+    <!-- Import Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Your CSS goes here -->
+    <style>
+        /* Paste your CSS here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+            /* Added sans-serif fallback */
+        }
+
+        main {
+            /* Using a linear gradient as a fallback for bg.png */
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%), url(/bg.png);
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        header.nav-container {
+            background-color: #fff;
+            color: #000;
+            font-size: 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 100;
+        }
+
+        header.nav-container nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .brand {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .brand-text {
+            font-size: 24px;
+            color: blue;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #0066ff;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0066ff, #ff6600);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: transparent;
+            color: #000;
+            border: 2px solid #000;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: #fff;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn.primary-black {
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 40px;
+            gap: 40px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .content-hero {
+            flex: 1;
+            color: #fff;
+        }
+
+        .content-hero h2 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0ff 50%, #b3e0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 10px 20px rgba(0, 102, 255, 0.2));
+            animation: fadeInDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .content-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #e0e0ff;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+            animation: fadeInUp 0.9s ease-out 0.15s both;
+            max-width: 600px;
+        }
+
+        .btn-trial {
+            background-color: #fff;
+            color: #0066ff;
+            border: 2px solid #fff;
+            padding: 15px 40px;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.9s ease-out 0.3s both;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-trial:hover {
+            background-color: transparent;
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 20px 50px rgba(255, 255, 255, 0.4);
+            transform: translateY(-4px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 25px 50px rgba(0, 102, 255, 0.3), 0 0 80px rgba(255, 102, 0, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 30px 60px rgba(0, 102, 255, 0.4), 0 0 100px rgba(255, 102, 0, 0.3);
+            }
+        }
+
+        .image-hero {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .image-hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            transform: rotateY(-5deg) rotateX(3deg);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease;
+            box-shadow: 0 25px 50px rgba(0, 102, 255, 0.3), 0 0 80px rgba(255, 102, 0, 0.2);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .image-hero img:hover {
+            transform: rotateY(-2deg) rotateX(1deg) scale(1.02);
+            box-shadow: 0 40px 80px rgba(0, 102, 255, 0.5),
+                0 0 120px rgba(255, 102, 0, 0.4);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header.nav-container {
+                font-size: 16px;
+            }
+
+            header.nav-container nav {
+                padding: 15px 20px;
+                gap: 10px;
+            }
+
+            .brand-text {
+                font-size: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex: 1 1 100%;
+                justify-content: center;
+                order: 3;
+            }
+
+            nav ul li a {
+                font-size: 14px;
+            }
+
+            .btn-container {
+                gap: 10px;
+                flex: 1 1 100%;
+                justify-content: center;
+                order: 4;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            /* Hero Section */
+            .hero {
+                flex-direction: column;
+                padding: 30px 20px;
+                gap: 30px;
+                min-height: auto;
+            }
+
+            .content-hero h2 {
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+
+            .content-hero p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            .btn-trial {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+
+            .image-hero {
+                width: 100%;
+            }
+
+            .image-hero img {
+                transform: rotateY(0) rotateX(0);
+                max-width: 80%;
+            }
+
+            .image-hero img:hover {
+                transform: rotateY(0) rotateX(0) scale(1.02);
+            }
+        }
+
+        @media (max-width: 480px) {
+            header.nav-container {
+                font-size: 14px;
+            }
+
+            header.nav-container nav {
+                padding: 12px 15px;
+                gap: 8px;
+            }
+
+            .brand-text {
+                font-size: 18px;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+            }
+
+            .btn-container {
+                gap: 8px;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 20px 15px;
+                gap: 20px;
+            }
+
+            .content-hero h2 {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+
+            .content-hero p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .btn-trial {
+                padding: 10px 24px;
+                font-size: 12px;
+            }
+
+            .image-hero img {
+                max-width: 100%;
+            }
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background-color: #000;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                order: 2;
+            }
+
+            header.nav-container nav {
+                flex-wrap: wrap;
+                position: relative;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #fff;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu li a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu li a:hover {
+                background-color: #f5f5f5;
+            }
+
+            .nav-menu li a::after {
+                display: none;
+            }
+
+            #btnContainer {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                background-color: #fff;
+                gap: 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                /* Pushing it down if menu is active - handled by JS/Logic usually, 
+                   or simple distinct containers */
+            }
+
+            /* Slight adjustment to prevent overlap in this specific CSS structure 
+               when both menus open. In a real scenario, you might wrap them in one div */
+            .nav-menu.active+#btnContainer.active {
+                top: calc(100% + 300px);
+            }
+
+            #btnContainer.active {
+                max-height: 200px;
+            }
+
+            #btnContainer .btn {
+                width: 100%;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="nav-container">
+        <nav>
+            <!-- Logo -->
+            <a href="#" class="brand">
+                Buzz<span class="brand-text">Sum</span>
+            </a>
+
+            <!-- Hamburger Button (Mobile) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-menu">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Use Cases</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Company</a></li>
+            </ul>
+
+            <!-- Buttons -->
+            <div class="btn-container" id="btnContainer">
+                <button class="btn">Log In</button>
+                <button class="btn primary-black">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero">
+            <!-- Text Content -->
+            <div class="content-hero">
+                <h2>Be inspired.
+                    <br>Stay informed
+                </h2>
+                <p>
+                    See how much interest brands and content generate in the wild.
+                </p>
+                <button class="btn-trial">Start Free Trial</button>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="image-hero">
+                <img src="/connect.jpg" alt="connect">
+            </div>
+        </section>
+    </main>
+
+    <!-- Script for Hamburger Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const btnContainer = document.querySelector('#btnContainer');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                btnContainer.classList.toggle('active');
+
+                if (navMenu.classList.contains('active')) {
+                    // This pushes the button container down by the max-height of the nav menu
+                    btnContainer.style.top = navMenu.scrollHeight + 100 + "px"; // 100% + height
+                } else {
+                    btnContainer.style.top = "100%";
+                }
+            });
+
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-menu li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    btnContainer.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
